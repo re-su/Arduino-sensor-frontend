@@ -1,0 +1,26 @@
+html{
+    background: url("sun.png"), rgb(98, 207, 221);
+    padding: 0;
+    margin: 0;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+body{
+    width: 100%;
+}
+#data{
+    color: white;
+    font-weight: bold;
+    font-size: xx-large;
+    background-color: rgb(5, 190, 5);
+    padding: 20px;
+    margin : auto;
+    text-align: center;
+}

@@ -1,6 +1,8 @@
+const API_ADDRESS = "http://IP:8000/getsensordata";
+
 function get_data(){
   console.log('Loading data...')
-  $.getJSON( "http://213.146.32.128:8000/getsensordata", function( data ) {
+  $.getJSON( API_ADDRESS, function( data ) {
     console.log('Data ready');
     var items = [];
     var values = [];

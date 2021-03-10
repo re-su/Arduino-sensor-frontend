@@ -1,4 +1,4 @@
-const API_ADDRESS = "http://IP:8000/getsensordata";
+const API_ADDRESS = "http://213.146.32.128:8000/getsensordata";
 
 function get_data(){
   console.log('Loading data...')
@@ -13,17 +13,15 @@ function get_data(){
     });
 
     var time = new Date();
-		Plotly.extendTraces('chart', {
-      x: [[time]],
-      y: [[values[0]]]
-    }, [0]);
 
-		Plotly.extendTraces('chart', {
-      x: [[time]],
-      y: [[values[1]]]
-    }, [1]);
-    var date = new Date();
-    items.push('<p>'+ date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds() +'</p>');
+    values.forEach( (item, key) => {
+      Plotly.extendTraces('chart', {
+        x: [[time]],
+        y: [[item]]
+      }, [key]);
+    });
+
+    items.push('<p>'+ time.getHours() + ":" + time.getMinutes() + ":" + time.getSeconds() +'</p>');
       
     $("#data").html(items.join(""));
   });
@@ -49,15 +47,25 @@ var trace2 = {
   type: 'scatter'
 };
 
-var toPlot = [trace1, trace2];
+var trace3 = {
+  x: [time],
+  y: [],
+  xaxis: 'x3',
+  yaxis: 'y3',
+  name: 'Distance',
+  fill: 'tonexty',
+  type: 'scatter'
+};
+
+var toPlot = [trace1, trace2, trace3];
 
 var layout = {
-  grid: {rows: 2, columns: 1, pattern: 'independent'},
+  grid: {rows: 3, columns: 1, pattern: 'independent'},
 };
 
 Plotly.newPlot('chart', toPlot, layout);
 
 setTimeout(function run(){
   get_data();
-  setTimeout(run, 1000);
-},1000);
+  setTimeout(run, 100);
+},100);

@@ -65,7 +65,4 @@ var layout = {
 
 Plotly.newPlot('chart', toPlot, layout);
 
-setTimeout(function run(){
-  get_data();
-  setTimeout(run, 100);
-},100);
+setInterval(get_data);
